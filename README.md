@@ -1,5 +1,9 @@
 # friboo-ext-zalando
 
+![Maven Central](https://img.shields.io/maven-central/v/org.zalando.stups/friboo-ext-zalando.svg)
+[![Build Status](https://travis-ci.org/zalando-incubator/friboo-ext-zalando.svg?branch=master)](https://travis-ci.org/zalando-incubator/friboo-ext-zalando)
+[![codecov](https://codecov.io/gh/zalando-incubator/friboo-ext-zalandp/branch/master/graph/badge.svg)](https://codecov.io/gh/zalando-incubator/friboo-ext-zalando)
+
 This library is an addition to [friboo](https://github.com/zalando/friboo), designed to handle internal and infrastructure-specific use cases in Zalando.
 
 ## Leiningen dependency

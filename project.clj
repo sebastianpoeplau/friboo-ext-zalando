@@ -11,7 +11,7 @@
   :min-lein-version "2.0.0"
 
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.zalando.stups/friboo "2.0.0-beta4-SNAPSHOT"]
+                 [org.zalando.stups/friboo "2.0.0-beta4"]
                  [org.postgresql/postgresql "9.4.1212"]]
 
   :plugins [[lein-cloverage "1.0.9"]
