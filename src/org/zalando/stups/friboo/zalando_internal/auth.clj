@@ -19,7 +19,7 @@
    payload]
   (if-let [magnificent-url (:magnificent-url configuration)]
     (let [policy        (:magnificent-policy configuration "relaxed-radical-agility")
-          auth-response (http/get
+          auth-response (http/post
                           (utils/conpath magnificent-url "/auth")
                           {:content-type     :json
                            :oauth-token      access-token

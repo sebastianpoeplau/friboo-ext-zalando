@@ -10,15 +10,15 @@
   (with-comp [auth-comp (map->Authorizer {:configuration {:magnificent-url    "magnificent-url"
                                                           :magnificent-policy "policy"}})]
              (testing "should return true if response was OK"
-               (with-redefs [http/get (constantly {:status 200})]
+               (with-redefs [http/post (constantly {:status 200})]
                  (let [result (fetch-auth auth-comp "token" {:payload "team"})]
                    (true! result))))
              (testing "should return false if response was not OK"
-               (with-redefs [http/get (constantly {:status 403})]
+               (with-redefs [http/post (constantly {:status 403})]
                  (let [result (fetch-auth auth-comp "token" {:payload "team"})]
                    (false! result))))
              (testing "should return false in case of error"
-               (with-redefs [http/get (throwing "UAAAH")]
+               (with-redefs [http/post (throwing "UAAAH")]
                  (let [result (fetch-auth auth-comp "token" {:payload "team"})]
                    (false! result))))))
 
@@ -49,13 +49,13 @@
                (fact "When magnificent-url is not set, just return true"
                  (get-auth auth-comp anything anything) => true
                  (provided
-                   (http/get anything anything) => nil :times 0)))
+                   (http/post anything anything) => nil :times 0)))
     (with-comp [auth-comp (map->Authorizer {:configuration {:magnificent-url    "magnificent-url"
                                                             :magnificent-policy "policy"}})]
                (fact "Should call POST magnificent-url/auth with payload and auth header"
                  (get-auth auth-comp {"access_token" "token"} {:team "team"}) => true
                  (provided
-                   (http/get "magnificent-url/auth" (contains {:oauth-token "token"
+                   (http/post "magnificent-url/auth" (contains {:oauth-token "token"
                                                                :form-params {:policy  "policy"
                                                                              :payload {:team "team"}}}))
                    => {:status 200}))))
