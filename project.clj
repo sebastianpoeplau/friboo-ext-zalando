@@ -1,4 +1,4 @@
-(defproject org.zalando.stups/friboo-ext-zalando "2.0.0-beta1-SNAPSHOT"
+(defproject org.zalando.stups/friboo-ext-zalando "2.0.0-beta2-SNAPSHOT"
   :description "Extension library on top of friboo by Zalando"
   :url "https://github.com/zalando-incubator/friboo-ext-zalando"
 
