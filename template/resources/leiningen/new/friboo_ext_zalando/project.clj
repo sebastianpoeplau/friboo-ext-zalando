@@ -1,5 +1,5 @@
 (defproject {{raw-name}} "0.0.1-SNAPSHOT"
-  :description "Example project based on zalando/friboo"
+  :description "Example project based on friboo-ext-zalando"
   :url "http://example.com/FIXME"
   :license {:name "The Apache License, Version 2.0"
             :url  "http://www.apache.org/licenses/LICENSE-2.0"}
@@ -11,7 +11,11 @@
   :uberjar-name "{{name}}.jar"
   :target-path "target/%s"
   :manifest {"Implementation-Version" ~#(:version %)}
+  :plugins [[lein-cloverage "1.0.9"]
+            [lein-set-version "0.4.1"]]
+  :aliases {"cloverage" ["with-profile" "test" "cloverage"]}
   :profiles {:uberjar {:aot :all}
+             :test    {:dependencies [[midje "1.8.3"]]}
              :dev     {:repl-options {:init-ns user}
                        :source-paths ["dev"]
                        :dependencies [[org.clojure/tools.namespace "0.2.11"]
