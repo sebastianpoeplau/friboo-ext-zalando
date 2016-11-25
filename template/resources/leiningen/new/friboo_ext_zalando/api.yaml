@@ -1,0 +1,113 @@
+swagger: '2.0'
+
+info:
+  title: {{name}}
+  version: '1.0'
+  description: Very nice {{name}}
+
+externalDocs:
+  description: External docs
+  url: http://example.github.io/
+
+basePath: /
+produces:
+- application/json
+consumes:
+- application/json
+
+security:
+- oauth2: [uid]
+
+paths:
+
+  '/':
+    get:
+      summary: Application root
+      operationId: org.zalando.stups.friboo.system.http/redirect-to-swagger-ui
+      responses:
+        default:
+          description: "Redirects to /ui/"
+
+  '/memories':
+    get:
+      summary: Retrieves all memories
+      operationId: "{{namespace}}.api/get-all-memories"
+      responses:
+        200:
+          description: OK
+        default:
+          $ref: '#/responses/Error'
+
+  '/memories/{memory_id}':
+    get:
+      summary: Retrieves a memory
+      parameters:
+      - $ref: '#/parameters/MemoryID'
+      operationId: "{{namespace}}.api/get-memory"
+      responses:
+        200:
+          description: OK
+        default:
+          $ref: '#/responses/Error'
+    put:
+      summary: Saves a memory
+      parameters:
+      - $ref: '#/parameters/MemoryID'
+      - $ref: '#/parameters/MemoryWrite'
+      operationId: "{{namespace}}.api/put-memory"
+      responses:
+        200:
+          description: OK
+        default:
+          $ref: '#/responses/Error'
+    delete:
+      summary: Deletes a memory
+      parameters:
+      - $ref: '#/parameters/MemoryID'
+      operationId: "{{namespace}}.api/delete-memory"
+      responses:
+        200:
+          description: OK
+        default:
+          $ref: '#/responses/Error'
+
+parameters:
+  MemoryID:
+    name: memory_id
+    in: path
+    type: string
+  MemoryWrite:
+    name: memory
+    in: body
+    schema:
+      $ref: '#/definitions/MemoryWrite'
+
+responses:
+  Error:
+    description: An error occured.
+    schema:
+      $ref: '#/definitions/Error'
+
+definitions:
+  MemoryWrite:
+    type: object
+    properties:
+      text:
+        type: string
+    required:
+    - text
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
+    example:
+      message: Internal Server Error
+
+securityDefinitions:
+  oauth2:
+    type: oauth2
+    flow: implicit
+    authorizationUrl: https://example.com/oauth2/dialog
+    scopes:
+      uid: Unique identifier of the user accessing the service.
