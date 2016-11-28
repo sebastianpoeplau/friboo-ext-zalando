@@ -4,10 +4,10 @@ A project based on friboo-ext-zalando framework.
 
 ## Development
 
-You can use `make.sh` to start the a Docker container with PostgreSQL database:
+You can use docker-compose to start the a Docker container with PostgreSQL database:
 
 ```
-$ ./make.sh db
+$ docker-compose up
 ```
 
 Run  the application:

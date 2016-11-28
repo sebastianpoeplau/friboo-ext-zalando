@@ -34,7 +34,7 @@
              ["Dockerfile" (render "Dockerfile" data)]
              [".dockerignore" (render "dockerignore" data)]
              [".gitignore" (render "gitignore" data)]
-             ["make.sh" (render "make.sh" data) :executable true]
+             ["docker-compose.yaml" (render "docker-compose.yaml" data)]
              ["dev-config.edn" (render "dev-config.edn" data)]
              ["resources/api.yaml" (render "api.yaml" data)]
              ["resources/db/queries.sql" (render "queries.sql" data)]

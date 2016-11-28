@@ -12,11 +12,12 @@ cd target
 DEBUG=1 lein new friboo-ext-zalando com.example/foo-bar
 
 pushd foo-bar
-    ./make.sh db
+    docker-compose up -d
     lein test
     lein uberjar
     touch scm-source.json
     docker build -t foo-bar .
+    docker-compose down
 popd
 
 # Just in case we want to try it outside of target/
